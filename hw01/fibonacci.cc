@@ -11,8 +11,8 @@ int fibonacci(int num, int onoff) {
     if(num == 1)
       result = 1;
     else if(num == 2) {
-      fibonacci(1, 1);
       result = 1;
+      fibonacci(1, 1);
     }
 
     else
