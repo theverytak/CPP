@@ -1,4 +1,4 @@
-// hello_world.cpp
+// hello_world.cc
 // 2016. 7. 11
 
 #include <iostream>
