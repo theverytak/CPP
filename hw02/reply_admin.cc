@@ -80,30 +80,33 @@ int main(void) {
         if(command == "#quit") {
           break;
         }
+
+        // while removing, do it reversely;
         else if(command.find("#remove") != string::npos) {
-          string numbers = command.substr(7);
-          bool is_removed = true;
+          string numbers = command.substr(8);
+          bool is_removed = false;
           // if there is a ',' in numbers;
           // 1. find the num; 2. erase it; 3. remake the string numbers;
           if(numbers.find(',') != string::npos) {
-            int comma_index_start = 0, comma_index_end = 0;
-            while(comma_index_end != numbers.length()) {
+            int comma_index_start = numbers.length() - 1, comma_index_end = numbers.length() - 1;
+            while(comma_index_start != -1) {
               // find the ','. if it's found, save the index, else make it the length of numbers so that we can exit the while loop;
-              for(int i = comma_index_start; i < numbers.length(); i++) {
+              for(int i = comma_index_start - 1; i >= 0; i--) {
                 if(numbers[i] == ',') {
-                  comma_index_end = i;
+                  comma_index_start = i;
                   break;
                 }
-                if(i == numbers.length() - 1) {
-                  comma_index_end = numbers.length();
+                if(i == 0) {
+                  comma_index_start = -1;
                 }
               }
-              string str_num = numbers.substr(comma_index_start, comma_index_end - comma_index_start);
+              string str_num = numbers.substr(comma_index_start + 1, comma_index_end - comma_index_start);
               int num = stoi(str_num);
-              is_removed = RemoveChat(chats, num);
-              comma_index_start = comma_index_end + 1;
+              is_removed = (RemoveChat(chats, num) || is_removed);
+              comma_index_end = comma_index_start - 1;
             }
           }
+          //if there's a '-';
           else if(numbers.find('-') != string::npos) {
             // find num1 and num2 from string numbers;
             int dash_index;
@@ -117,14 +120,17 @@ int main(void) {
             string str_num2 = numbers.substr(numbers.find('-') + 1);
             int num1 = stoi(str_num1);
             int num2 = stoi(str_num2);
-            cout << "num : " << num1 << " " << num2 << endl;
-            for(int i = num1; i <= num2; i++) {
+            num1 = (num1 > GetChatCount(chats) - 1) ? GetChatCount(chats) - 1 : num1;
+            num2 = (num2 > GetChatCount(chats) - 1) ? GetChatCount(chats) - 1 : num2;
+            for(int i = num2; i >= num1; i--) {
               is_removed = RemoveChat(chats, i);
             }
           }
           else {
-            int num = stoi(numbers);
-            is_removed = RemoveChat(chats, num);
+            if(isdigit(numbers[0])) {
+              int num = stoi(numbers);
+              is_removed = RemoveChat(chats, num);
+            }
           }
           if(is_removed) PrintChat(chats);
         }
