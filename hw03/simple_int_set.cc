@@ -13,7 +13,8 @@ SimpleIntSet::SimpleIntSet()
 
 SimpleIntSet::SimpleIntSet(int *_elements, int _count)
 {
-  mElements = _elements;
+  mElements = new int[_count];
+  std::copy(_elements, _elements + _count, mElements);
   mElementCount = _count;
 }
 
@@ -51,8 +52,6 @@ int SimpleIntSet::elementCount() const
 // just put together, and sort;
 SimpleIntSet* SimpleIntSet::unionSet(SimpleIntSet& _operand)
 {
-  this->printSet();
-  _operand.printSet();
   int* left = this->elements();
   int leftCount = this->elementCount();
   int* right = _operand.elements();
@@ -62,9 +61,19 @@ SimpleIntSet* SimpleIntSet::unionSet(SimpleIntSet& _operand)
 
   delete[] this->mElements;
 
+  // allocate new memory to left;
   this->mElements = new int[leftCount + rightCount];
-  std::copy(temp, temp + leftCount, this->mElements);
-  std::copy(right, right + rightCount, this->mElements + leftCount);
+  this->mElementCount = leftCount + rightCount;
+
+  // copy the temp and right to newly made left;
+  for(int i = 0; i < leftCount; i++)
+  {
+    mElements[i] = temp[i];
+  }
+  for(int i = leftCount; i < this->elementCount(); i++)
+  {
+    mElements[i] = _operand.elements()[i - leftCount];
+  }
 
   this->sortElements();
 
@@ -85,6 +94,7 @@ void SimpleIntSet::printSet()
 {
   sortElements();
   int num = elements()[0];
+  std::cout << "{ " << num << " ";
   for(int i = 1; i < elementCount(); i++)
   {
     if(mElements[i] != num)
