@@ -1,10 +1,12 @@
 // minimal_fighter.h
 // 2017. 7. 15
 
-#ifndef __hw03__minimal_fighter__
-#define __hw03__minimal_fighter__
+#ifndef _MINIMAL_FIGHTER_H_
+#define _MINIMAL_FIGHTER_H_
 
 #include <iostream>
+#include <string>
+#include <sstream>
 using namespace std;
 
 enum EFighterStatus
@@ -38,7 +40,4 @@ public:
     void fight(MinimalFighter *_enemy);
 };
 
-#endif
-
-minimal_fighter.h
-minimal_fighter.h 표시 중입니다.
+#endif // _MINIMAL_FIGHTER_H_

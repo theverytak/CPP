@@ -1,10 +1,6 @@
 // minimal_fighter_main.cc
 // 2017. 7. 15
 
-#include <iostream>
-#include <string>
-#include <sstream>
-
 #include "minimal_fighter.h"
 
 using namespace std;
@@ -55,6 +51,3 @@ int main(void)
     while(processFight()){ /* Nothing else to do. */ }
     return 0;
 }
-
-minimal_fighter_main.cc
-minimal_fighter.h 표시 중입니다.
