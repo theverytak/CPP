@@ -30,16 +30,3 @@ public:
 };
 
 #endif // _REPLY_ADMIN_H_
-
-/********************* WARNING! ************************
-
-You MUST add these following functions in ReplyAdmin():
-
- addChat("Hello, Reply Administrator!");
- addChat("I will be a good programmer.");
- addChat("This class is awesome.");
- addChat("Professor Lim is wise.");
- addChat("Two TAs are kind and helpful.");
- addChat("I think male TA looks cool.");
-
-*******************************************************/

@@ -12,15 +12,15 @@ private:
     int *mElements;
     int mElementCount;
 
-    void sortElements(); // you can reuse your previous sort assignment
     SimpleIntSet();
 
 public:
     SimpleIntSet(int *_elements, int _count);
     ~SimpleIntSet();
 
-    int *elements() const; // return sorted array
+    int *elements() const;
     int elementCount() const;
+    void sortElements();
 
     SimpleIntSet *unionSet(SimpleIntSet& _operand);
     SimpleIntSet *differenceSet(SimpleIntSet& _operand);
