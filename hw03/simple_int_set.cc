@@ -81,12 +81,92 @@ SimpleIntSet* SimpleIntSet::unionSet(SimpleIntSet& _operand)
 
   return this;
 }
+
+// find the index of unique members, then put it;
 SimpleIntSet* SimpleIntSet::differenceSet(SimpleIntSet& _operand)
 {
+  int* left = this->elements();
+  int leftCount = this->elementCount();
+  int* right = _operand.elements();
+  int rightCount = _operand.elementCount();
+  int* temp = new int[leftCount];
+  int indices[leftCount], index = 0;
+  std::copy(left, left + leftCount, temp);
+
+  delete[] this->mElements;
+
+  // find the members for diff set. If found, save the index to the array indices;
+  for(int i = 0; i < leftCount; i++)
+  {
+    for(int j = 0; j < rightCount; j++)
+    {
+      if(temp[i] == right[j])
+      {
+        break;
+      }
+      else if(j == rightCount - 1)
+      {
+        indices[index] = i;
+        index++;
+      }
+    }
+  }
+
+  // allocate new memory to left;
+  this->mElements = new int[index];
+  this->mElementCount = index;
+
+  // copy the diffset members from temp to newly made left;
+  for(int i = 0; i < index; i++)
+  {
+    mElements[i] = temp[indices[i]];
+  }
+
+  delete[] temp;
+
   return this;
 }
+
+
+
 SimpleIntSet* SimpleIntSet::intersectSet(SimpleIntSet& _operand)
 {
+  int* left = this->elements();
+  int leftCount = this->elementCount();
+  int* right = _operand.elements();
+  int rightCount = _operand.elementCount();
+  int* temp = new int[leftCount];
+  int indices[leftCount], index = 0;
+  std::copy(left, left + leftCount, temp);
+
+  delete[] this->mElements;
+
+  // find the members for intersect set. If found, save the index to the array indices. w/ diff set, almost same;
+  for(int i = 0; i < leftCount; i++)
+  {
+    for(int j = 0; j < rightCount; j++)
+    {
+      if(temp[i] == right[j])
+      {
+        indices[index] = i;
+        index++;
+        break;
+      }
+    }
+  }
+
+  // allocate new memory to left;
+  this->mElements = new int[index];
+  this->mElementCount = index;
+
+  // copy the diffset members from temp to newly made left;
+  for(int i = 0; i < index; i++)
+  {
+    mElements[i] = temp[indices[i]];
+  }
+
+  delete[] temp;
+
   return this;
 }
 
