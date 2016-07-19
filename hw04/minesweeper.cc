@@ -4,12 +4,19 @@
 #include "minesweeper.h"
 
 
+Point::Point(int _x, int _y)
+{
+  x = _x;
+  y = _y;
+}
+
 // constructor and destructor
 Minesweeper::Minesweeper()
 {
   mWidth = 0;
   mHeight = 0;
   mTouchCount = 0;
+  isPlaying = false;
 }
 Minesweeper::~Minesweeper() {}
 
@@ -28,6 +35,10 @@ int Minesweeper::touchCount() const
 vector<string> Minesweeper::map() const
 {
   return mMap;
+}
+vector<Point> Minesweeper::touch() const
+{
+  return mTouch;
 }
 
 char Minesweeper::get(int _x, int _y) const
@@ -140,6 +151,8 @@ bool Minesweeper::setMap(size_t _width, size_t _height, vector<string>& _map)
   mWidth = _width;
   mHeight = _height;
   mMap = _map;
+  isPlaying = false;
+  mTouch.clear();
 
   return true;
 }
@@ -169,12 +182,66 @@ bool Minesweeper::toggleMine(int _x, int _y)
 
 void Minesweeper::printMap()
 {
-  for(int i = 0; i < height(); i++)
+  if(!isPlaying)
   {
-    for(int j = 0; j < width(); j++)
+    for(int i = 0; i < height(); i++)
     {
-      cout << get(j ,i);
+      for(int j = 0; j < width(); j++)
+      {
+        cout << get(j ,i);
+      }
+      cout << endl;
     }
-    cout << endl;
+  }
+  else
+  {
+    for(int i = 0; i < height(); i++)
+    {
+      for(int j = 0; j < width(); j++)
+      {
+        Point pt(j, i);
+        if(find(this->touch().begin(), this->touch().end(), pt)
+           != this->touch().end())
+        {
+          cout << get(j, i);
+        }
+        else
+        {
+          cout << '_';
+        }
+      }
+    }
+  }
+}
+
+bool Minesweeper::setPlay()
+{
+  if(this->map().empty())
+  {
+    return false;
+  }
+  else
+  {
+    isPlaying = true;
+  }
+  return true;
+}
+
+bool Minesweeper::touchMap(int _x, int _y)
+{
+  if(get(_x, _y) == '*')
+  {
+    return true;
+  }
+  else
+  {
+    Point touched(_x,_y);
+    if(find(this->touch().begin(), this->touch().end(), touched)
+       != this->touch().end())
+    {
+      return false;
+    }
+    mTouch.push_back(touched);
+    return false;
   }
 }

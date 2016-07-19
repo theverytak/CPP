@@ -8,8 +8,17 @@
 #include <vector>
 #include <sstream>
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
+
+class Point
+{
+  public :
+    int x;
+    int y;
+    Point(int _x, int _y);
+};
 
 class Minesweeper
 {
@@ -17,6 +26,8 @@ private:
     size_t mWidth, mHeight;
     vector<string> mMap;
     int mTouchCount;
+    bool isPlaying;
+    vector<Point> mTouch;
 
 public:
     ////////// 4-3-1 (7 score) //////////
@@ -28,6 +39,7 @@ public:
     size_t height() const;
     int touchCount() const;
     vector<string> map() const;
+    vector<Point> touch() const;
     char get(int _x, int _y) const; // return ' ' if input is illegal
 
     // return false when input is incorrect

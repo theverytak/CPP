@@ -33,6 +33,17 @@ int main()
       m.toggleMine(col, row);
       m.printMap();
     }
+    else if(command == ":play")
+    {
+      m.setPlay();
+      m.printMap();
+    }
+    else if(command == ":touch")
+    {
+      cin >> col >> row;
+      m.touchMap(col, row);
+      m.printMap();
+    }
     else
     {
       break;
