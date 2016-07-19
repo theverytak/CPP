@@ -1,5 +1,5 @@
 // reply_admin.cc
-// 2017. 7. 15
+// 2017. 7. 19
 #include "reply_admin.h"
 
 //constructor & destructor;
