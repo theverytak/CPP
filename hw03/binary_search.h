@@ -16,6 +16,9 @@ public:
     BinarySearch();
     BinarySearch(int *_array, int _arrayCount);
     ~BinarySearch();
+
+    int *array() const;
+    int arrayCount() const;
     int getIndex(int _element); // return -1 when element doesn't exist
 };
 
