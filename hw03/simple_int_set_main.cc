@@ -1,4 +1,4 @@
-// simple_int_set.h
+// simple_int_set_main.cc
 // 2017. 7. 15
 
 #include <iostream>

@@ -1,4 +1,4 @@
-// simple_int_set.h
+// simple_int_set.cc
 // 2017. 7. 15
 #include "simple_int_set.h"
 #include <algorithm>
