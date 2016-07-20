@@ -120,6 +120,14 @@ bool CreativeStone::burnTarget(const string _name, const int _burningPower)
   {
     return false;
   }
+
+
+  /* **********************
+    like printMinions(), below codes won't work well (there wasn't any segmentation fault though)
+    if I tried to use enemies() or freinds(), instead of mEnemies, mFriends.
+    ************************ */
+
+
   if(mEnemies.find(_name) != mEnemies.end())
   {
     mEnemies[_name].setHp(mEnemies[_name].hp() - _burningPower);
@@ -187,16 +195,25 @@ void CreativeStone::printMinions()
       cout << endl;
     }
   }
-  /*for(auto it = mEnemies.begin(); it != mEnemies.end(); it++)
+  /*for(auto itF = friends().begin(), itE = enemies().begin();
+      itF != friends().end() || itE != enemies().end(); )
   {
-    cout << it->first << " " << it->second.hp() << " " <<
-            it->second.power() << endl;
-  }
-  cout << "for loop ends here" << endl;
-  for(auto it = mFriends.begin(); it != mFriends.end(); it++)
-  {
-    cout << it->first << " " << it->second.hp() << " " <<
-            it->second.power() << endl;
-  }
-  cout << "for loop ends here again" << endl;  */
+    if(!friends().empty() && itF != friends().end())
+    {
+      cout << itF->first << " " << itF->second.hp() << " " <<
+              itF->second.power();
+      itF++;
+    }
+    if(!enemies().empty() && itE != enemies().end())
+    {
+      cout << " / " << itE->first << " " << itE->second.hp() << " " <<
+              itE->second.power() << endl;
+      itE++;
+    }
+    else
+    {
+      cout << endl;
+    }
+  }  ------------ segmentation fault????
+     difference between friends() and mFriends; */
 }
