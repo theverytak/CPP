@@ -10,6 +10,11 @@ Point::Point(int _x, int _y)
   y = _y;
 }
 
+bool Point::operator==(const Point& rhs) const
+{
+  return (this->x == rhs.x && this->y == rhs.y);
+}
+
 // constructor and destructor
 Minesweeper::Minesweeper()
 {
@@ -200,8 +205,8 @@ void Minesweeper::printMap()
       for(int j = 0; j < width(); j++)
       {
         Point pt(j, i);
-        if(find(this->touch().begin(), this->touch().end(), pt)
-           != this->touch().end())
+        vector<Point>::iterator it = find(mTouch.begin(), mTouch.end(), pt);
+        if(it != mTouch.end())
         {
           cout << get(j, i);
         }
@@ -210,6 +215,7 @@ void Minesweeper::printMap()
           cout << '_';
         }
       }
+      cout << endl;
     }
   }
 }
@@ -231,17 +237,19 @@ bool Minesweeper::touchMap(int _x, int _y)
 {
   if(get(_x, _y) == '*')
   {
+    mTouchCount++;
     return true;
   }
   else
   {
     Point touched(_x,_y);
-    if(find(this->touch().begin(), this->touch().end(), touched)
-       != this->touch().end())
+    vector<Point>::iterator it = find(mTouch.begin(), mTouch.end(), touched);
+    if(it != mTouch.end())
     {
       return false;
     }
     mTouch.push_back(touched);
+    mTouchCount++;
     return false;
   }
 }

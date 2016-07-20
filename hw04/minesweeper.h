@@ -18,6 +18,7 @@ class Point
     int x;
     int y;
     Point(int _x, int _y);
+    bool operator==(const Point& rhs) const;
 };
 
 class Minesweeper

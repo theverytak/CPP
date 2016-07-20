@@ -41,8 +41,15 @@ int main()
     else if(command == ":touch")
     {
       cin >> col >> row;
-      m.touchMap(col, row);
-      m.printMap();
+      bool isDead = m.touchMap(col, row);
+      if(isDead)
+      {
+        cout << "DEAD(" << m.touchCount() << ")" << endl;
+      }
+      else
+      {
+        m.printMap();
+      }
     }
     else
     {
