@@ -17,3 +17,7 @@ const의 의미를 "이 함수 안에는 const밖에 못들어온다." 로 생�
 보자 라는 생각이었는데, 다행히(?) 컴파일은 됐고, 관련해서 다시 찾아보았다.
 const함수 안에는 const가 아닌 변수가 못오는게 아니다. const가 아닌 함수가 못온다. 다시 말해, const로
 선언된 함수 안에는 const함수밖에 못온다. 당연하게도 안에서 멤버 변수의 변경은 안된다.
+
+4. ParseNAdd함수에서 11번줄 stoi안에 보면 새로운 string생성자가 있는데 이는 stackoverflow를 보고
+변경한 것이다. 원래는 substr을 사용하려 했으나, substr안에 iterator가 들어가기 힘들어서 저렇게 바꾸었다.
+관련 url : http://stackoverflow.com/questions/10004395/getting-a-substring-of-a-stdstring-between-two-iterators
