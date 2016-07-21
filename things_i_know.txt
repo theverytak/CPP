@@ -1,0 +1,18 @@
+1. const의 의미 :
+  일단 클래스 내에 선언된 멤버 함수에 관해서.
+  const로 선언되면 해당 함수 안에서는 멤버 변수의 변경이 이루어질 수 없다.
+  또한 안에는 const로 선언된 함수만이 올 수 있다.
+  예제 코드 :
+  class Exercise {
+    private :
+      int _number;
+    public :
+      int number() const {
+         notChange();  //<------ 이거를 호출하면 에러가 뜬다. 해당 함수 안에서 아무것도
+                       //         안해도 일단 const함수가 아니기 때문에.
+        return _number;
+      }
+      void notChange() /*const*/ {
+        cout << "this func won't change anything" << endl;
+      }
+  };
