@@ -33,7 +33,7 @@ class Canvas {
     void DeleteShape(int index);
     void Draw(ostream& os); // start with initializing pictures_ to '.';
     void Dump(ostream& os);
-    bool IsValidInput(const int& width, const int& height);
+    bool IsValidInput(const Shape& s);
     bool IsInsideCanvas(const Shape &s);
 };
 

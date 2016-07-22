@@ -32,7 +32,7 @@ int main() {
         int addResult = cv.AddShape(s);
         if(addResult == ERROR_OUT_OF_CANVAS)
           cout << "ERROR OUT OF CANVAS" << endl;
-        else if(addResult = ERROR_INVALID_INPUT)
+        else if(addResult == ERROR_INVALID_INPUT)
           cout << "ERROR INVALID INPUT" << endl;
       }
       else if(type == "tri_down") {

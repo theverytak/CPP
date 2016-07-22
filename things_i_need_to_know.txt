@@ -2,3 +2,5 @@
 1. private으로 선언된 맴버 변수와 그에 접근하기 위해 만든 public 맴버 함수 사이의 관계, 다른점
 2. static, inline, 이런 것들.
 3. 연산자 오버로딩에 관하여.
+4. ostream istream에 대해서(hw05/draw_shape.cc내 void Draw(ostream& os), void Dump(ostream& os)
+참조)
