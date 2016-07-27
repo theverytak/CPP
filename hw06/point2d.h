@@ -5,6 +5,7 @@
 #define _POINT2D_H_
 #include <iostream>
 #include <map>
+#include <string>
 
 using namespace std;
 
