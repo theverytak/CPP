@@ -1,5 +1,5 @@
 // parse_radix.h
-// 2017. 7. 27
+// 2016. 7. 27
 
 #ifndef _PARSE_RADIX_H_
 #define _PARSE_RADIX_H_

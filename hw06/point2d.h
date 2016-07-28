@@ -1,5 +1,5 @@
 // point2d.h
-// 2017. 7. 27
+// 2016. 7. 27
 
 #ifndef _POINT2D_H_
 #define _POINT2D_H_

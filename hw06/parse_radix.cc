@@ -1,5 +1,5 @@
 // parse_radix.cc
-// 2017. 7. 27
+// 2016. 7. 27
 
 #include "parse_radix.h"
 
@@ -57,7 +57,7 @@ string convertRadix(int number, int radix) {
   StringReverse(&result);
   if(radix != 10)
     result = result + '_' + to_string(radix);
-  
+
   return result;
 }
 // ex) "ff_16" -> 255;

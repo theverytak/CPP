@@ -1,5 +1,5 @@
 // point2d.cc
-// 2017. 7. 27
+// 2016. 7. 27
 
 #include "point2d.h"
 
