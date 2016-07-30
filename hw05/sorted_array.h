@@ -1,5 +1,5 @@
 // sorted_array.h
-// 2017. 7. 21
+// 2016. 7. 21
 
 #ifndef _SORTED_ARRAY_H_
 #define _SORTED_ARRAY_H_

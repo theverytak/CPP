@@ -1,0 +1,23 @@
+앞으로는 과제 하나 할 때마다 하나씩 메모를 남길거다.
+2016. 7. 21
+
+sorted_array관련 메모.
+
+1. 클래스 내의 AddNumber함수를 사용해 정렬까지 하였다. 숫자를 하나 입력(push_back)받은 후 바로
+ sort하였고 sort 함수는 <algorithm>의 std::sort를 사용함.
+
+2. GetSortedAscending()관련해서. 교수님이 준 헤더파일에 이미 반환형이 vector<int>로 되어있어서
+ 불가피하게 복사가 많이 이루어 졌다. 함수 내에서도 새로운 벡터를 선언했으며 메인함수에서 함수를
+ 호출 한 후 리턴값을 저장할 때도 새로운 벡터를 사용했다. 두 번의 불필요한 복사가 일어났는데.
+ 내림차순의 경우에는 거꾸로 읽어야 하기 때문에 복사를 해야 할 것 같지만, 오름차순은 참조를 사용
+ 해서 복사를 막을 수 있었을 것 같다.
+
+3. GetMax() 함수와 관련해서. 처음에 만들 때는 뒤에 붙은 const때문에 헷갈렸다. 처음에
+const의 의미를 "이 함수 안에는 const밖에 못들어온다." 로 생각했기 때문이다. 일단 컴파일부터 해
+보자 라는 생각이었는데, 다행히(?) 컴파일은 됐고, 관련해서 다시 찾아보았다.
+const함수 안에는 const가 아닌 변수가 못오는게 아니다. const가 아닌 함수가 못온다. 다시 말해, const로
+선언된 함수 안에는 const함수밖에 못온다. 당연하게도 안에서 멤버 변수의 변경은 안된다.
+
+4. ParseNAdd함수에서 11번줄 stoi안에 보면 새로운 string생성자가 있는데 이는 stackoverflow를 보고
+변경한 것이다. 원래는 substr을 사용하려 했으나, substr안에 iterator가 들어가기 힘들어서 저렇게 바꾸었다.
+관련 url : http://stackoverflow.com/questions/10004395/getting-a-substring-of-a-stdstring-between-two-iterators

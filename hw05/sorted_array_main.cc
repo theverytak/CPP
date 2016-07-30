@@ -1,5 +1,5 @@
 // sorted_array_main.cc
-// 2017. 7. 21
+// 2016. 7. 21
 
 #include "sorted_array.h"
 

@@ -1,5 +1,5 @@
 // draw_shape_main.cc
-// 2017. 7. 21
+// 2016. 7. 21
 
 #include "draw_shape.h"
 
