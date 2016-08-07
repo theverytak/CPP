@@ -12,19 +12,19 @@ int main() {
       if(type == "i") {
           int value;
           cin >> value;
-          nv.add(value); // replace to nv.add<int>(value) when error occurs
+          nv.add<int>(value); // replace to nv.add<int>(value) when error occurs
       } else if(type == "d") {
           double value;
           cin >> value;
-          nv.add(value); // replace to nv.add<double>(value) when error occurs
+          nv.add<double>(value); // replace to nv.add<double>(value) when error occurs
       } else if(type == "c") {
           char value;
           cin >> value;
-          nv.add(value); // replace to nv.add<char>(value) when error occurs
+          nv.add<char>(value); // replace to nv.add<char>(value) when error occurs
       }
       else if(type == "print") cout << nv;
       else if(type == "q") break;
   }
-  
+
   return 0;
 }

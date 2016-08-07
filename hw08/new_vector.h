@@ -22,8 +22,18 @@ class Element {
 
 class NewVector {
   public:
-    NewVector(){count_ = 0;}
-    template <typename T> void add(T _value);
+    NewVector(){ count_ = 0; }
+    template <typename T>
+    void add(T _value) {
+      if(sizeof(_value) == sizeof(int))
+        values_.push_back(Element(_value, 'i'));
+      else if(sizeof(_value) == sizeof(double))
+        values_.push_back(Element(_value, 'd'));
+      else if(sizeof(_value) == sizeof(char))
+        values_.push_back(Element(_value, 'c'));
+
+      count_++;
+    }
     inline int count() const { return count_; }
 
     friend ostream& operator << (ostream& _os, const NewVector _nv);

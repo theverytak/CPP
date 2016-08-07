@@ -102,7 +102,7 @@ inline istream& operator>>(istream& is, SortedArray<T>& a) {
   for(int i = 0; i < size; i++)
     a.Add(tempArray[i]);
 
-  //delete[] tempArray;
+  delete[] tempArray;
 
   return is;
 }
