@@ -6,21 +6,28 @@
 
 #include <iostream>
 #include <string>
+#include <map>
+#include <fstream>
 
 using namespace std;
 
 class WorldClock {
  public:
-  WorldClock() {}
+  WorldClock() {
+    LoadTimezoneFromFile("timezone.txt");
+  }
   WorldClock(int hour, int minute, int second)
     : hour_(hour), minute_(minute), second_(second) {}
+  ~WorldClock() {
+    SaveTimezoneToFile("timezone.txt");
+  }
 
   void Tick(int seconds = 1);
   // 잘못된 값 입력시 false 리턴하고 원래 시간은 바뀌지 않음.
   bool SetTime(int hour, int minute, int second);
 
-  static bool LoadTimezoneFromFile(const string& file_path); 
-  static void SaveTimezoneToFile(const string& file_path); 
+  static bool LoadTimezoneFromFile(const string& file_path);
+  static void SaveTimezoneToFile(const string& file_path);
   static void AddTimezoneInfo(const string& city, int diff);
 
   // 잘못된 값 입력시 false 리턴하고 원래 시간은 바뀌지 않음.
@@ -50,5 +57,6 @@ ostream& operator<<(ostream& os, const WorldClock& c);
 // hh:mm:ss 로 입력받음.
 // 사용자 입력 오류시 >> operator는 InvalidDateException을 발생할 수 있음.
 istream& operator>>(istream& is, WorldClock& c);
+void parseHMS(string hms, int& hour, int& minute, int& second);
 
 #endif // _WORLD_CLOCK_H_
