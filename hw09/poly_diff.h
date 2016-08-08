@@ -23,4 +23,9 @@ class Polynomial {
     map<int, int> fPrime_;
 };
 
+
+// two func below will return -1 if the term is a constant one.
+int findCoef(string expression, int termStart, int termEnd);
+int findExp(string expression, int termStart, int termEnd);
+
 #endif  // _POLY_DIFF_H_

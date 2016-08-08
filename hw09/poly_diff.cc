@@ -4,37 +4,20 @@
 #include "poly_diff.h"
 
 void Polynomial::addFunction(string expression) {
+  int termStart = 0, termEnd = 0;
   int coef, exponent;
-  int coefStart = 0, coefEnd = 0;
-  int exStart = 0, exEnd = 0;
-  string::size_type sz;
 
-  for(int i = 0; i < expression.length(); i++) {
-    if(expression[i] == 'x') {
-      coefEnd = i;
-      if(coefStart == coefEnd)
-        coef = 1;
-      else {
-        coef = stoi(string(expression.begin() + coefStart,
-                    expression.begin() + coefEnd), &sz);
-        if(expression[i + 1] == '^') {
-          exStart = i + 2;
-          for(int j = exStart; j < expression.length(); j++) {
-            if(expression[j] == '+' || expression[j] == '\0') {
-              exEnd = j;
-              exponent = stoi(string(expression.begin() + exStart,
-                              expression.begin() + exEnd), &sz);
-              coefStart = exEnd + 1;
-              break;
-            }
-          }
-        }
-        else {
-          exponent = 1;
-          coefStart = i + 2;
-        }
+
+  for(int i = 0; i <= expression.length(); i++) {
+    if(expression[i] == '+' || expression[i] == '\0') {
+      termEnd = i;
+      coef = findCoef(expression, termStart, termEnd);
+      exponent = findExp(expression, termStart, termEnd);
+      //cout << "coef n exp : " << coef << " " << exponent << endl;
+      termStart = i + 1;
+
+      if(exponent != 0)
         f_.insert(pair<int, int>(exponent, coef));
-      }
     }
   }
 }
@@ -44,6 +27,7 @@ void Polynomial::makeFPrime() {
   for(auto it = f_.begin(); it != f_.end(); it++) {
     exponent = it->first - 1;
     coef = it->first * it->second;
+  //  cout << "coef' n exp' : " << coef << " " << exponent << endl;
     fPrime_.insert(pair<int, int>(exponent, coef));
   }
 }
@@ -56,4 +40,44 @@ int Polynomial::fPrimeResult(int x) {
   }
 
   return sum;
+}
+
+int findCoef(string expression, int termStart, int termEnd) {
+  string singleTerm = string(expression.begin() + termStart,
+                             expression.begin() + termEnd);
+
+  // if it's a constant term;
+  if(singleTerm.find('x') == string::npos)
+    return -1;
+
+  for(int i = 0; i < singleTerm.length(); i++) {
+    if(singleTerm[i] == 'x' && i == 0)
+      return 1;
+
+    else if(singleTerm[i] == 'x' && singleTerm[i - 1] == '-')
+      return -1;
+
+    else if(singleTerm[i] == 'x' && i != 0) {
+      string::size_type sz;
+      return stoi(string(singleTerm.begin(), singleTerm.begin() + i), &sz);
+    }
+  }
+}
+
+int findExp(string expression, int termStart, int termEnd) {
+  string singleTerm = string(expression.begin() + termStart,
+                             expression.begin() + termEnd);
+
+  if(singleTerm.find('x') == string::npos)
+    return -1;
+
+  if(singleTerm.find('^') == string::npos)
+    return 1;
+
+  for(int i = 0; i < singleTerm.length(); i++) {
+    if(singleTerm[i] == '^') {
+      string::size_type sz;
+      return stoi(string(singleTerm.begin() + i + 1, singleTerm.end()), &sz);
+    }
+  }
 }
