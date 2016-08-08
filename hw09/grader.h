@@ -14,7 +14,7 @@ using namespace std;
 class Subject {
  public:
   Subject(const string& name, int credit)
-      : name_(name), credit_(credit) {}
+    : name_(name), credit_(credit) {}
   virtual ~Subject() {}
 
   const string& name() const { return name_; }
