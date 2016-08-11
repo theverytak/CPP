@@ -31,7 +31,7 @@ bool SaveAccounts(const vector<Account*>& accounts, const string& filename) {
 		<< accounts[i]->balance() << "\t" << accounts[i]->interest_rate() << endl;
 
 	outfile.close();
-	
+
 	return true;
 }
 
