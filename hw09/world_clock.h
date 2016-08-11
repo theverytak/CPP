@@ -44,6 +44,8 @@ class WorldClock {
   // Timezone 관련 정보는 아래 변수에 저장. 시차는 시간 단위로만 계산.
   int time_difference_;
   static map<string, int> timezone_;
+  static ifstream infile;
+  static ofstream outfile;
 };
 
 struct InvalidTimeException {

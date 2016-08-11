@@ -1,0 +1,44 @@
+C++ 과제 관련 메모
+2016. 8. 11
+
+우선 메모를 적지 않았던 09, 10관련 메모를 먼저 적는다. 과제를 만든 지 시간이 어느 정도 지나서 기억이 나는 것만 적는다.
+
+hw09
+
+1. calender, world_clock은 try, throw, catch를 사용했는데 그렇게 어렵지 않았다. 두 과제는 하는 일이 비슷해
+구성이 비슷하다.
+
+2. grader는 거의 날로 먹은 수준.
+
+3. poly_diff는 처음에 다항식 parsing이 어려웠는데 무작정 코드를 짜지 않고 무엇을 어떻게 해야할 지 생각을 한 후 코드를 짜니
+괜찮았다.
+
+hw10
+
+1. grader는 09에서 만든 것에 A+, B+같은 성적을 더한 것 뿐이다.
+
+2. std::sort함수를 사용할 때 오름차순, 내림차순을 내가 만든 함수를 인자로 넘겨서 정할 수 있다. grader_main 내의
+bool CompareStudent(const pair<string, double>& a, const pair<string, double>& b);
+참고.
+
+3. 파일 입출력은 fstream.h내의 함수를 사용했으며, 09에도 사용 예제가 있고, 10에서는 bank_account.h의
+bool SaveAccounts(const vector<Account*>& accounts, const string& filename);
+bool LoadAccounts(const string& filename, vector<Account*>* accounts);
+참고.
+
+4. aus_vote는 어렵게 했던 기억이 있는 과제인데, 역시 이번에도 어려웠다.
+vector<RoundResult> ComputeResult();
+위의 함수를 과제에서는 const함수로 지정을 해놨는데 왜 const로 하라고 했는지 이해가 가지 않아서 const를 그냥 뺐다.
+그리고 멤버 변수로 무엇을 저장할 지 하나도 알려준 것이 없기 때문에 처음에 고민이 됐었다. 하지만 순수하게 클래스 내에 무엇이 있어야 하나를
+생각해 보았다. 예를들어 자동차 클래스 내에는 속도, 주행거리 등이 있어야한다. 그래서 AusVoteSystem내에는 후보와 투표권자를 담았다.
+참고로 교수님(혹은 수업의 조교)이 짠 코드는
+https://docs.google.com/document/d/10z8OMtZeMtjkFbfWje4gdEq7xjl4GHqDL_GP_q-c-V4/edit#heading=h.a077hgfqjlih
+의 링크를 들어가면 있다.
+
+auto_scoring관련 메모
+
+1. 내가 수업을 들을 때에는 없던 과제였기 때문에 처음 짰다. 클래스는 사용하지 않았고, 그냥 c언어 스타일로 짰다.
+
+2. system함수를 사용해서 명령어들을 프로그램 내에서 실행하는 것, '<', '>'를 사용해서 입력, 출력 스트림을 바꾸는 것들을 사용해봤다.
+
+3. 결과는 약간 오류가 있음. 예를들어 실제 정답이 "answer"인데 출력 결과가 "answer "인 경우에 오답으로 말한다.
